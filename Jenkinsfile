@@ -1,15 +1,29 @@
 pipeline {
     agent any
-    
     stages {
-		node {
-			git url: 'https://github.com/joe_user/simple-maven-project-with-tests.git'
-			...
+		stage('Checkout') {
+			steps {
+			checkout scm
 			}
-    }
-    post {
-        always {
-            archiveArtifacts artifacts: 'generatedFile.txt', onlyIfSuccessful: true
-        }
+		stage('Build') {
+			steps {
+				script{
+					def customImage = docker.build("pokedex:${env.BUILD_ID}")
+				}
+			}
+		}
+        stage('Test') {
+			agent {docker { image "pokedex:${env.BUILD_ID}" }}
+            steps {
+				sh 'npm test'
+            }
+		}
+		stage ('Building') {
+			steps {
+				sh '''
+				docker run --name pokedex -d -u root -p 8080:8080 -v $(which docker):/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock jenkins/jenkins:alpine
+				'''
+			}
+		}
     }
 }
