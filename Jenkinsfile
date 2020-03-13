@@ -21,7 +21,7 @@ pipeline {
 				}
 			}
             steps {
-				sh 'npm install -g mocha'
+				sh 'npm install -g mocha --save-dev'
 				sh 'npm test'
             }
 		}
