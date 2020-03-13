@@ -5,3 +5,5 @@ COPY ./ /app
 CMD cd pokedex-go
 
 RUN npm install
+
+CMD ['npm', 'start']

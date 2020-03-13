@@ -21,14 +21,13 @@ pipeline {
 				}
 			}
             steps {
-				sh 'npm install -g mocha --save-dev'
 				sh 'npm test'
             }
 		}
-		stage ('Building') {
+		stage ('Deploy') {
 			steps {
 				sh '''
-				docker run --name pokedex -d -u root -p 8080:8080 -v $(which docker):/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock jenkins/jenkins:alpine
+				docker run pokedex -d -u root -p 5555 -v $(which docker):/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock jenkins/jenkins:alpine
 				'''
 			}
 		}
