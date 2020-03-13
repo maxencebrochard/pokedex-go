@@ -20,8 +20,7 @@ pipeline {
 				}
 			}
             steps {
-				sh 'cd /app'
-				sh 'npm test'
+				sh 'cd /app && npm test'
             }
 		}
 		stage ('Deploy') {
