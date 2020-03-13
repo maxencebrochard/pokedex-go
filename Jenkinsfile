@@ -26,7 +26,7 @@ pipeline {
 		stage ('Deploy') {
 			steps {
 				sh '''
-				docker run pokedex -d -u root -p 5555 -v $(which docker):/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock jenkins/jenkins:alpine
+				docker run pokedex -d -p 5555
 				'''
 			}
 		}
