@@ -14,7 +14,7 @@ pipeline {
 			}
 		}
         stage('Test') {
-			agent {docker { image "pokedex:${env.BUILD_ID}" }}
+			agent {docker { image "pokedex:${env.BUILD_ID}"  args '-u root:root'}}
             steps {
 				sh 'sudo npm install -g mocha'
 				sh 'npm test'
