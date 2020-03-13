@@ -1,6 +1,6 @@
 FROM node:6-alpine
 
-COPY ./ /app
+COPY . /app
 
 CMD cd pokedex-go
 
