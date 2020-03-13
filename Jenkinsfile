@@ -16,11 +16,11 @@ pipeline {
         stage('Test') {
 			agent {
 				docker { 
-					image "pokedex:${env.BUILD_ID}"  
-					args "-u root:root"
+					image "pokedex:${env.BUILD_ID}"
 				}
 			}
             steps {
+				sh 'cd /app'
 				sh 'npm test'
             }
 		}
