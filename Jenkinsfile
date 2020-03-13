@@ -25,9 +25,9 @@ pipeline {
 		}
 		stage ('Deploy') {
 			steps {
-				sh '''
-				docker run pokedex -d -p 5555
-				'''
+				sh """
+				docker run pokedex:${env.BUILD_ID} -d -p 5555
+				"""
 			}
 		}
     }
