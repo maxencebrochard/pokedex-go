@@ -27,7 +27,7 @@ pipeline {
 		agent any 
 			steps {
 				sh """
-				docker run pokedex:${env.BUILD_ID} -d -p 5555
+				docker run -d -p 5555 pokedex:${env.BUILD_ID}
 				"""
 			}
 		}
