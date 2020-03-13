@@ -24,6 +24,7 @@ pipeline {
             }
 		}
 		stage ('Deploy') {
+		agent any 
 			steps {
 				sh """
 				docker run pokedex:${env.BUILD_ID} -d -p 5555
