@@ -2,7 +2,7 @@ FROM node:6-alpine
 
 COPY . /app
 
-CMD cd pokedex-go
+WORKDIR /app
 
 RUN npm install
 
